@@ -1,0 +1,25 @@
+{
+  "name": "bootcampqa_frontend",
+  "version": "1.0.0",
+  "description": "Automated test cases with TestCafe framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paulina-Montoya/BootcampQA_FrontEnd.git"
+  },
+  "keywords": [
+    "TestCafe",
+    "Automation-Testing",
+    "Frontend-testing"
+  ],
+  "author": "Paulina Montoya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Paulina-Montoya/BootcampQA_FrontEnd/issues"
+  },
+  "homepage": "https://github.com/Paulina-Montoya/BootcampQA_FrontEnd#readme",
+  "dependencies": {}
+}
