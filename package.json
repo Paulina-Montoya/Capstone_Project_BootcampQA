@@ -21,5 +21,8 @@
     "url": "https://github.com/Paulina-Montoya/BootcampQA_FrontEnd/issues"
   },
   "homepage": "https://github.com/Paulina-Montoya/BootcampQA_FrontEnd#readme",
-  "dependencies": {}
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "testcafe": "^1.15.0"
+  }
 }
