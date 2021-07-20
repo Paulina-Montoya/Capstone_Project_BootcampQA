@@ -4,7 +4,7 @@
   "description": "Automated test cases with TestCafe framework",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "testcafe chrome ./pom/tests"
   },
   "repository": {
     "type": "git",
