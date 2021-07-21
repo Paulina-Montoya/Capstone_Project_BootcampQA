@@ -2,8 +2,11 @@ import { Selector } from 'testcafe'
 
 class todayPage {
     constructor(){
-        this.userAvatar = Selector ('.user_avatar big settings_avatar')
+        this.todayWelcome = Selector ('span').withText('Today')
+        this.addNewTaskComponent = Selector ('.task_list_item__body')
+        this.topBarMenu = Selector ('#top_bar_inner')
     }
 }
+
 
 export default new todayPage

@@ -1,28 +1,38 @@
+import { ClientFunction } from 'testcafe'
 import { URLS, CREDENTIALS } from '../data/Constants'
-import indexPage from '../pages/IndexPage.js'
+import homePage from '../pages/HomePage.js'
 import loginPage from '../pages/LogInPage.js'
-import todayPage from '../pages/TodayPage.js'
 
 
 fixture ('Login form test cases')
     .page `${URLS.INDEX_URL}`
    
 .beforeEach(async t =>{
-    await t.click(indexPage.indexLoginButton)
+    await t.click(homePage.homePageLoginButton)
+    await t.click(loginPage.checkboxKeepLoggedin)
 })
 
 test('User login successfully', async t => {
-    await t
-        .typeText(loginPage.emailInput, CREDENTIALS.USER_SUCCESS.USERNAME)
-        .typeText(loginPage.passwordInput, CREDENTIALS.USER_SUCCESS.PASSWORD)
-        .click(loginPage.loginButton)
-        .expect(todayPage.userAvatar.exists).ok
+    const getLocation = ClientFunction(() => document.location.href)
+    await loginPage.logingSuccess(CREDENTIALS.SUCCESS_USER.USERNAME,CREDENTIALS.SUCCESS_USER.PASSWORD)
+   
+    await t.expect(getLocation()).contains(URLS.INDEX_URL_TODAY)
     })
 
-test('User login unsuccessfully', async t => {
-    await t
-        .typeText(loginPage.emailInput, CREDENTIALS.USER_INVALID.USERNAME)
-        .typeText(loginPage.passwordInput, CREDENTIALS.USER_INVALID.PASSWORD)
-        .click(loginPage.loginButton)
-        .expect(todayPage.userAvatar.exists).ok
+test('User login unsuccess with both null values', async t => {
+    await loginPage.logingSuccess(null,null)
+    
+    await t.expect(loginPage.messageInvalidAddress.exists).ok
+    })
+
+test('User login unsuccess because of blank password input', async t => {
+    await loginPage.logingSuccess(CREDENTIALS.SUCCESS_USER.USERNAME,null)
+        
+    await t.expect(loginPage.messageBlankPassword.exists).ok
+    })
+
+test('User login unsuccess because of wrong email', async t => {
+    await loginPage.logingSuccess(CREDENTIALS.INVALID_USER.PASSWORD,CREDENTIALS.SUCCESS_USER.PASSWORD)
+            
+    await t.expect(loginPage.messageInvalidEmail.exists).ok
     })
