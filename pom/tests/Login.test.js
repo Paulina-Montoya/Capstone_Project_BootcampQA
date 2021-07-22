@@ -1,25 +1,25 @@
 import { ClientFunction } from 'testcafe'
 import { URLS, CREDENTIALS } from '../data/Constants'
-import homePage from '../pages/HomePage.js'
-import loginPage from '../pages/LogInPage.js'
-
+import homePage from '../pages/HomePage'
+import loginPage from '../pages/LogInPage'
+import { STANDARD_USER_ROLE } from '../data/Roles'
 
 fixture ('Login form test cases')
-    .page `${URLS.INDEX_URL}`
-   
-.beforeEach(async t =>{
-    await t.click(homePage.homePageLoginButton)
-    await t.click(loginPage.checkboxKeepLoggedin)
-})
-
-test('User login successfully', async t => {
-    const getLocation = ClientFunction(() => document.location.href)
-    await loginPage.logingSuccess(CREDENTIALS.SUCCESS_USER.USERNAME,CREDENTIALS.SUCCESS_USER.PASSWORD)
-   
-    await t.expect(getLocation()).contains(URLS.INDEX_URL_TODAY)
+    .page `${URLS.HOME_URL}`
+    .beforeEach(async t =>{
+        await t.click(homePage.homePageLoginButton)
+        await t.click(loginPage.checkboxKeepLoggedin)
     })
 
-test('User login unsuccess with both null values', async t => {
+//Role test case
+test('User login successfully with a user role', async t => {
+    const getLocation = ClientFunction(() => document.location.href)
+    await t.useRole(STANDARD_USER_ROLE)
+       
+    await t.expect(getLocation()).contains(URLS.HOME_URL+'app/today')
+    })
+
+test('User login unsuccess because of wrong email', async t => {
     await loginPage.logingSuccess(null,null)
     
     await t.expect(loginPage.messageInvalidAddress.exists).ok
