@@ -4,7 +4,12 @@
   "description": "Automated test cases with TestCafe framework",
   "main": "index.js",
   "scripts": {
-    "test": "testcafe chrome ./pom/tests"
+    "test-all": "testcafe chrome:headless,firefox:headless ./pom/tests",
+    "test-login": "testcafe chrome:headless,firefox:headless ./pom/tests/Login.test.js",
+    "test-tasks": "testcafe chrome:headless,firefox:headless ./pom/tests/Today.test.js",
+    "test-suite-smoke": "testcafe chrome:headless,firefox:headless ./pom/tests --test-meta suite=smoke",
+    "test-create-report": "testcafe chrome ./pom/tests/*.js --skips-js-errors --reporter cucumber-json --reporter-json-folder='report/JSONreport'",
+    "test-open-report": "node report-generator.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +28,9 @@
   "homepage": "https://github.com/Paulina-Montoya/BootcampQA_FrontEnd#readme",
   "dependencies": {
     "dotenv": "^10.0.0",
-    "testcafe": "^1.15.0"
-  }
+    "multiple-cucumber-html-reporter": "^1.18.0",
+    "testcafe": "^1.15.0",
+    "testcafe-reporter-cucumber-json": "^6.3.0"
+  },
+  "devDependencies": {}
 }

@@ -4,7 +4,6 @@ import homePage from '../pages/HomePage'
 import loginPage from '../pages/LogInPage'
 import todayPage from '../pages/TodayPage'
 
-
 fixture ('Create tasks test cases')
     .page `${URLS.HOME_URL}`
     .beforeEach(async t =>{
@@ -13,7 +12,6 @@ fixture ('Create tasks test cases')
         await loginPage.logingSuccess(CREDENTIALS.SUCCESS_USER.USERNAME,CREDENTIALS.SUCCESS_USER.PASSWORD)
     })
 
-    
 test('User create correctly a new task with a today date', async t => {
     await t
     .click(todayPage.addTaskButton)
@@ -21,4 +19,4 @@ test('User create correctly a new task with a today date', async t => {
     .click(todayPage.sumitTask)
 
     await t.expect(todayPage.todayTaskCreated.exists).ok
-    })    
+    })
