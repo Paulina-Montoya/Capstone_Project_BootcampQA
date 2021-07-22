@@ -1,10 +1,9 @@
-import { t } from 'testcafe'
 import { URLS, CREDENTIALS } from '../data/Constants'
 import homePage from '../pages/HomePage'
 import loginPage from '../pages/LogInPage'
 import todayPage from '../pages/TodayPage'
 
-fixture ('Create tasks test cases')
+fixture('Create tasks test cases')
     .page `${URLS.HOME_URL}`
     .beforeEach(async t =>{
         await t.click(homePage.homePageLoginButton)
@@ -18,5 +17,5 @@ test('User create correctly a new task with a today date', async t => {
     .typeText(todayPage.titleText,'Title tests 1', {paste:true})
     .click(todayPage.sumitTask)
 
-    await t.expect(todayPage.todayTaskCreated.exists).ok
+    await t.expect(todayPage.todayTaskCreated.exists).ok()
     })
