@@ -8,7 +8,10 @@ module.exports = {
     'parserOptions': {
         'ecmaVersion': 12,
         'sourceType': 'module'
-    },
+    },  
+        'plugins':['testcafe'],
+        'extends': 'plugin:testcafe/recommended',
+        'parser': 'babel-eslint', 
     'rules': {
         'accessor-pairs': 'error',
         'array-bracket-newline': 'error',
