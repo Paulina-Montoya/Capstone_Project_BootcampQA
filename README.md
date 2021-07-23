@@ -46,7 +46,7 @@
     `test-open-report`
 
 ## Reviw code:
-6. To analyzes the JavaScript code and quickly find problems run the next command:
+8. To analyzes the JavaScript code and quickly find problems run the next command:
 
     `npm run test-text` 
 
