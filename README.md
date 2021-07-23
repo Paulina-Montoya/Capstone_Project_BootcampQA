@@ -1,4 +1,4 @@
-# Bootcamp QA Front-end automated test cases
+# Bootcamp QA Front-end Framework
 
 ## Pre-conditions:
 - [Install Node.js](https://nodejs.org/en/download/current/)
