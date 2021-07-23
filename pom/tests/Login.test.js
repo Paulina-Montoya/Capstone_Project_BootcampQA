@@ -4,7 +4,7 @@ import homePage from '../pages/HomePage'
 import loginPage from '../pages/LogInPage'
 import { STANDARD_USER_ROLE } from '../data/Roles'
 
-fixture ('Login form test cases')
+fixture('Login form test cases')
     .page `${URLS.HOME_URL}`
     .beforeEach(async t =>{
         await t.click(homePage.homePageLoginButton)

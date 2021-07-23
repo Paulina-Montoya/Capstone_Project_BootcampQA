@@ -15,9 +15,12 @@ report.generate({
   customData: {
     title: 'Run info',
     data: [
-      { label: 'Project', value: `${projectName}` },
-      { label: 'Release', value: `${projectVersion}` },
-      { label: 'Report Generation Time', value: `${reportGenerationTime}` },
-    ],
-  },
+      { label: 'Project', 
+      value: `${projectName}` },
+      { label: 'Release', 
+      value: `${projectVersion}` },
+      { label: 'Report Generation Time', 
+      value: `${reportGenerationTime}` }
+    ]
+  }
 });

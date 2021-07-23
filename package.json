@@ -9,7 +9,8 @@
     "test-tasks": "testcafe chrome:headless,firefox:headless ./pom/tests/Today.test.js",
     "test-suite-smoke": "testcafe chrome:headless,firefox:headless ./pom/tests --test-meta suite=smoke",
     "test-create-report": "testcafe chrome ./pom/tests/*.js --skips-js-errors --reporter cucumber-json --reporter-json-folder='report/JSONreport'",
-    "test-open-report": "node report-generator.js"
+    "test-open-report": "node report-generator.js",
+    "test-text":"eslint ./pom/"
   },
   "repository": {
     "type": "git",
@@ -32,5 +33,7 @@
     "testcafe": "^1.15.0",
     "testcafe-reporter-cucumber-json": "^6.3.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint": "^7.31.0"
+  }
 }
