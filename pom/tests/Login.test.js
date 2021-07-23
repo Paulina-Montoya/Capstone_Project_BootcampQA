@@ -19,7 +19,7 @@ test.meta('suite','smoke')('User login successfully with an standar role', async
     await t.expect(getLocation()).contains(URLS.HOME_URL+'app/today')
     })
 
-test.meta('suite','smoke')('User login unsuccess because of wrong email', async t => {
+test('User login unsuccess because of wrong email', async t => {
     await loginPage.logingSuccess(null,null)
     
     await t.expect(loginPage.messageInvalidAddress.exists).ok
