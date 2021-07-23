@@ -46,7 +46,7 @@
     `test-open-report`
 
 ## Reviw code:
-8. To analyzes the JavaScript code and quickly find problems run the next command:
+8. To analyzes the JavaScript code and quickly find problems, run the next command:
 
     `npm run test-text` 
 
@@ -55,5 +55,5 @@
 - testcafe
 - dotenv
 - multiple-cucumber-html-reporter
-- estcafe-reporter-cucumber-json
+- testcafe-reporter-cucumber-json
 - eslint
