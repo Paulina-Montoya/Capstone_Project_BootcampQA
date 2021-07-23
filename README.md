@@ -17,7 +17,7 @@
 
     `.env`
 
-4. Open the .env file and add the next variables. In BASE_URL add the home page url, in USER_SUCCESS and a PASSWORD_SUCCESS add a valid email and password to login successfully in the todoist application:
+4. Open the .env file and add the next variables. In BASE_URL add the home page url, in USER_SUCCESS and PASSWORD_SUCCESS add a valid email and password to login successfully in the todoist application:
 
     `BASE_URL=https://baseurl.com/`
 
@@ -30,20 +30,20 @@
 
     `npm run test-all` : run all the test scripts
    
-    `npm run test-login` : run the login test cases
+    `npm run test-login` : run the login form test cases
     
     `npm run test-tasks` : run the creation of tasks test cases
     
     `npm run test-suite-smoke` : run the suite smoke
 
 ## Create a report:
-6. To generate the report run the next command to create the JSON file with the data provided:
+6. First, run the next command to generate a JSON file with the data provided:
 
     `npm run test-create-report`
 
-7. Run the next command to open the HTML report, it going to open a browser to show the statistics:
+7. Second, to open the HTML report run the next command. It going to open a browser to shows the statistics:
 
-    `test-open-report`
+    `npm run test-open-report`
 
 ## Reviw code:
 8. To analyzes the JavaScript code and quickly find problems, run the next command:
