@@ -13,7 +13,6 @@ class loginPage {
         this.checkboxKeepLoggedin = Selector ('#permanent_login')
     }
 
-
     async logingSuccess(username, password ){
 
         if (username != null) {
