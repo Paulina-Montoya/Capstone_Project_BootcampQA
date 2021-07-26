@@ -1,18 +1,47 @@
-import { Selector } from 'testcafe'
+import { Selector, t } from 'testcafe'
 
 class tasksPage {
     constructor(){
-        this.todayWelcome = Selector('span').withText('Today')
-        this.addNewTaskComponent = Selector('.task_list_item__body')
-        this.topBarMenu = Selector('#top_bar_inner')
         this.addTaskButton = Selector('.plus_add_button')
         this.titleText = Selector('.public-DraftStyleDefault-block.public-DraftStyleDefault-ltr')
-        this.sumitTask = Selector('button').withExactText('Add task')
-        this.todayTaskCreated = Selector('.task_list_item').withText('Title today test')
+        this.sumitTask =Selector('.reactist_button.reactist_button--primary')
+        this.todayTaskCreated = Selector('.markdown_content.task_content')
         this.tomorrowTaskButton = Selector('.item_due_selector.icon_pill')
-        this.tomorrowCalendarButton = Selector('.scheduler-suggestions-item')
-        this.menuTopBar = Selector('.left_menu_toggle.top_bar_btn')
-        this.menuTopBarInbox = Selector('#filter_inbox')    
+        this.tomorrowCalendarButton = Selector('.scheduler-suggestions-item').withText('Tomorrow')
+        this.deleteTaskButton =Selector('.task_checkbox.priority_1')
+        this.taskCompleted =Selector('.text_holder').withText('1 task completed')
+        this.tomorrowTaskCreatedInbox =Selector('.date date_tom').withText('Tomorrow')
+    }
+
+    async createMultipleTask(titleName){
+        await this.createTask(titleName)
+        await this.delete(this.deleteTaskButton)
+    }
+
+   async createTask(titleName){
+        await t
+        .click(this.addTaskButton)
+        .typeText(this.titleText,titleName, {paste:true})
+        .click(this.sumitTask)
+        .setNativeDialogHandler(() => true)
+        .click(this.sumitTask)
+    }
+
+    async delete(item){
+        if (item != null){
+            await t.click(this.deleteTaskButton)
+        }
+    }
+
+    async createTomorrowTask(titleName){
+        await t
+        .click(this.addTaskButton)
+        .click(this.tomorrowTaskButton)
+        .click(this.tomorrowCalendarButton)
+        .typeText(this.titleText,titleName, {paste:true})
+        .click(this.sumitTask)
+        .setNativeDialogHandler(() => true)
+        .click(this.sumitTask)
     }
 }
 

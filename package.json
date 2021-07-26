@@ -4,11 +4,11 @@
   "description": "Automated test cases with TestCafe framework",
   "main": "index.js",
   "scripts": {
-    "test-all": "testcafe chrome:headless,firefox:headless ./pom/tests",
+    "test-all": "testcafe chrome ./pom/tests",
     "test-login": "testcafe chrome:headless,firefox:headless ./pom/tests/Login.test.js",
-    "test-tasks": "testcafe chrome:headless,firefox:headless ./pom/tests/Tasks.test.js",
-    "test-projects": "testcafe chrome:headless,firefox:headless ./pom/tests/Projects.test.js",
-    "test-suite-smoke": "testcafe chrome:headless,firefox:headless ./pom/tests --test-meta suite=smoke",
+    "test-tasks": "testcafe chrome ./pom/tests/Tasks.test.js",
+    "test-projects": "testcafe chrome ./pom/tests/Projects.test.js",
+    "test-suite-smoke": "testcafe chrome ./pom/tests --test-meta suite=smoke",
     "test-create-report": "testcafe chrome ./pom/tests/*.js --skips-js-errors --reporter cucumber-json --reporter-json-folder='report/JSONreport'",
     "test-open-report": "node report-generator.js",
     "test-text": "eslint ./pom/"

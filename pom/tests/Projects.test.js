@@ -12,13 +12,7 @@ fixture('Create projects test cases')
     })
 
 test.meta('suite','smoke')('User create correctly a new project', async t => {
-    await t
-    .expect(projectsPage.burgerMenu.exists).ok()
-    .click(projectsPage.addProject)
-    .typeText(projectsPage.nameProjectInput,'New project test', {paste:true})
-    .click(projectsPage.colorProject)
-    .click(projectsPage.colorViolet)
-    .click(projectsPage.buttonAddProject)
+    await projectsPage.createProject()
 
     await t.expect(projectsPage.namePorjectCreated.exists).ok
     })
