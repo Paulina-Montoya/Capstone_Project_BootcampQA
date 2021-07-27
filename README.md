@@ -33,8 +33,10 @@
     `npm run test-login` : run the login form test cases
     
     `npm run test-tasks` : run the creation of tasks test cases
+ 
+    `npm run test-projects` : run the creation of a project test cases
     
-    `npm run test-suite-smoke` : run the suite smoke
+    `npm run test-suite-smoke` : run the smoke suite
 
 ## Create a report:
 6. First, run the next command to generate a JSON file with the data provided:
