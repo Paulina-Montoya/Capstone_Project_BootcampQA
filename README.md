@@ -34,7 +34,7 @@
     
     `npm run test-tasks` : run the creation of tasks test cases
  
-    `npm run test-projects` : run the creation of a project test cases
+    `npm run test-projects` : run the creation of a project test case
     
     `npm run test-suite-smoke` : run the smoke suite
 
