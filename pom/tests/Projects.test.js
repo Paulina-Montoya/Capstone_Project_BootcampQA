@@ -13,6 +13,5 @@ fixture('Create projects test cases')
 
 test.meta('suite','smoke')('User create correctly a new project', async t => {
     await projectsPage.createProject()
-
     await t.expect(projectsPage.namePorjectCreated.exists).ok
     })
