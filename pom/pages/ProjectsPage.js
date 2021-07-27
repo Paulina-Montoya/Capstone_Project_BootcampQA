@@ -19,6 +19,7 @@ class projectsPage {
         .click(this.colorProject)
         .click(this.colorViolet)
         .click(this.buttonAddProject)
+        await t.wait(5000)
     }
 }
 
