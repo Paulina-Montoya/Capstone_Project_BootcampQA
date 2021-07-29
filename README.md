@@ -52,6 +52,11 @@
 
     `npm run test-text` 
 
+## API testing:
+9. To test the API run the next command:
+
+    `npm run test-api` 
+
 ## Libraries:
 
 - testcafe
@@ -59,3 +64,4 @@
 - multiple-cucumber-html-reporter
 - testcafe-reporter-cucumber-json
 - eslint
+- newman
