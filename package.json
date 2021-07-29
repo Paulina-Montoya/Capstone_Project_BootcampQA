@@ -11,7 +11,8 @@
     "test-suite-smoke": "testcafe chrome ./pom/tests --test-meta suite=smoke",
     "test-create-report": "testcafe chrome ./pom/tests/*.js --skips-js-errors --reporter cucumber-json --reporter-json-folder='report/JSONreport'",
     "test-open-report": "node report-generator.js",
-    "test-text": "eslint ./pom/"
+    "test-text": "eslint ./pom/",
+    "test-api": "newman run './api _tests/Todoist_API_test.postman_collection.json' -e './api _tests/BootcampQA.postman_environment.json'"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.31.0",
-    "eslint-plugin-testcafe": "^0.2.1"
+    "eslint-plugin-testcafe": "^0.2.1",
+    "newman": "^5.2.4"
   }
 }
