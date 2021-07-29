@@ -30,15 +30,15 @@
   },
   "homepage": "https://github.com/Paulina-Montoya/BootcampQA_FrontEnd#readme",
   "dependencies": {
-    "dotenv": "^10.0.0",
-    "multiple-cucumber-html-reporter": "^1.18.0",
-    "testcafe": "^1.15.0",
-    "testcafe-reporter-cucumber-json": "^6.3.0"
+    "dotenv": "10.0.0",
+    "multiple-cucumber-html-reporter": "1.18.0",
+    "testcafe": "1.15.0",
+    "testcafe-reporter-cucumber-json": "6.3.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.31.0",
-    "eslint-plugin-testcafe": "^0.2.1",
-    "newman": "^5.2.4"
+    "babel-eslint": "10.1.0",
+    "eslint": "7.31.0",
+    "eslint-plugin-testcafe": "0.2.1",
+    "newman": "5.2.4"
   }
 }
