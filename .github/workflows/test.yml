@@ -12,7 +12,17 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          node-version: "14.x"
       - run: npm install
       - run: npm ci
       - run: npm run test-api
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+      - run: npm install
+      - run: npm ci
+      - run: npm run test-text

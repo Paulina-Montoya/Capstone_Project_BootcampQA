@@ -15,13 +15,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"",
 									"pm.test(\"Verify status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
-									"})",
-									"",
-									"pm.test(\"Response time is less than 650ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(650)",
 									"})",
 									"",
 									"pm.test(\"Validate schema create project\", function () {",
@@ -47,7 +42,9 @@
 									"",
 									"pm.test(\"Validate Json Project Id value\", function () {",
 									"    pm.expect(jsonData.id).to.eql(pm.environment.get('projectId'))",
-									"})"
+									"})",
+									"",
+									"postman.clearEnvironmentVariable(\"boardName\");"
 								],
 								"type": "text/javascript"
 							}
@@ -56,7 +53,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"pm.environment.set(\"boardName\", \"Name Project Test\")"
+									"pm.environment.set(\"boardName\", \"Name Project Test\");"
 								],
 								"type": "text/javascript"
 							}
@@ -119,15 +116,13 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"",
 									"pm.test(\"Verify status code is 400\", function () {",
 									"    pm.response.to.have.status(400);",
 									"})",
 									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
-									"})",
-									""
+									"pm.test(\"Verify error message\", function () { ",
+									"    pm.expect(pm.response.text()).to.include(\"Empty name\"); ",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -197,10 +192,6 @@
 									"",
 									"pm.test(\"Verify status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
-									"})",
-									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
 									"})"
 								],
 								"type": "text/javascript"
@@ -256,9 +247,9 @@
 									"    pm.response.to.have.status(403);",
 									"})",
 									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
-									"})"
+									"pm.test(\"Verify error message\", function () { ",
+									"    pm.expect(pm.response.text()).to.include(\"The request could not be satisfied\"); ",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -311,10 +302,6 @@
 									"",
 									"pm.test(\"Verify status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
-									"})",
-									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
 									"})"
 								],
 								"type": "text/javascript"
@@ -359,9 +346,9 @@
 									"    pm.response.to.have.status(404);",
 									"})",
 									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
-									"})"
+									"pm.test(\"Verify error message\", function () { ",
+									"    pm.expect(pm.response.text()).to.include(\"404 page not found\"); ",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -403,10 +390,6 @@
 									"",
 									"pm.test(\"Verify status code is 204\", function () {",
 									"    pm.response.to.have.status(204);",
-									"})",
-									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
 									"})"
 								],
 								"type": "text/javascript"
@@ -467,9 +450,9 @@
 									"    pm.response.to.have.status(400);",
 									"})",
 									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
-									"})"
+									"pm.test(\"Verify error message\", function () { ",
+									"    pm.expect(pm.response.text()).to.include(\"Project not found\"); ",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -518,6 +501,68 @@
 					"response": []
 				},
 				{
+					"name": "Delete a project Negative",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"Verify status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"})",
+									"",
+									"pm.test(\"Verify error message\", function () { ",
+									"    pm.expect(pm.response.text()).to.include(\"404 page not found\"); ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "cef8e414152e3b5ab0fb545dc493c6e6090d2266",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Request-Id",
+								"value": "$(uuidgen)",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/projects/-",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"projects",
+								"-"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Delete a project",
 					"event": [
 						{
@@ -527,10 +572,6 @@
 									"",
 									"pm.test(\"Verify status code is 204\", function () {",
 									"    pm.response.to.have.status(204);",
-									"})",
-									"",
-									"pm.test(\"Response time is less than 800ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(800)",
 									"})"
 								],
 								"type": "text/javascript"
@@ -578,68 +619,26 @@
 						}
 					},
 					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				},
 				{
-					"name": "Delete a project Negative",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"",
-									"pm.test(\"Verify status code is 404\", function () {",
-									"    pm.response.to.have.status(404);",
-									"})",
-									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "cef8e414152e3b5ab0fb545dc493c6e6090d2266",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "X-Request-Id",
-								"value": "$(uuidgen)",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}/projects/-",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"projects",
-								"-"
-							]
-						}
-					},
-					"response": []
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -656,10 +655,6 @@
 									"",
 									"pm.test(\"Verify status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
-									"})",
-									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
 									"})"
 								],
 								"type": "text/javascript"
@@ -715,9 +710,9 @@
 									"    pm.response.to.have.status(403);",
 									"})",
 									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
-									"})"
+									"pm.test(\"Verify error message\", function () { ",
+									"    pm.expect(pm.response.text()).to.include(\"ERROR: The request could not be satisfied\"); ",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -771,10 +766,6 @@
 									"",
 									"pm.test(\"Verify status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
-									"})",
-									"",
-									"pm.test(\"Response time is less than 800ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(800)",
 									"})",
 									"",
 									"pm.test(\"Validate schema create task\", function () {",
@@ -853,11 +844,9 @@
 									"    pm.response.to.have.status(400);",
 									"})",
 									"",
-									"pm.test(\"Response time is less than 800ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(800)",
-									"})",
-									"",
-									""
+									"pm.test(\"Verify error message\", function () { ",
+									"    pm.expect(pm.response.text()).to.include(\"Empty content\"); ",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -907,10 +896,6 @@
 									"",
 									"pm.test(\"Verify status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
-									"})",
-									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
 									"})"
 								],
 								"type": "text/javascript"
@@ -955,9 +940,9 @@
 									"    pm.response.to.have.status(404);",
 									"})",
 									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
-									"})"
+									"pm.test(\"Verify error message\", function () { ",
+									"    pm.expect(pm.response.text()).to.include(\"Not Found\"); ",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -999,10 +984,6 @@
 									"",
 									"pm.test(\"Verify status code is 204\", function () {",
 									"    pm.response.to.have.status(204);",
-									"})",
-									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
 									"})"
 								],
 								"type": "text/javascript"
@@ -1056,9 +1037,9 @@
 									"    pm.response.to.have.status(400);",
 									"})",
 									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
-									"})"
+									"pm.test(\"Verify error message\", function () { ",
+									"    pm.expect(pm.response.text()).to.include(\"At least one of supported fields should be set and non-empty\"); ",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1109,10 +1090,6 @@
 									"",
 									"pm.test(\"Verify status code is 204\", function () {",
 									"    pm.response.to.have.status(204);",
-									"})",
-									"",
-									"pm.test(\"Response time is less than 800ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(800)",
 									"})"
 								],
 								"type": "text/javascript"
@@ -1158,9 +1135,9 @@
 									"    pm.response.to.have.status(400);",
 									"})",
 									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
-									"})"
+									"pm.test(\"Verify error message\", function () { ",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid id\"); ",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1203,10 +1180,6 @@
 									"",
 									"pm.test(\"Verify status code is 204\", function () {",
 									"    pm.response.to.have.status(204);",
-									"})",
-									"",
-									"pm.test(\"Response time is less than 800ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(800)",
 									"})"
 								],
 								"type": "text/javascript"
@@ -1252,9 +1225,9 @@
 									"    pm.response.to.have.status(400);",
 									"})",
 									"",
-									"pm.test(\"Response time is less than 800ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(800)",
-									"})"
+									"pm.test(\"Verify error message\", function () { ",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid id\"); ",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1297,10 +1270,6 @@
 									"",
 									"pm.test(\"Verify status code is 204\", function () {",
 									"    pm.response.to.have.status(204);",
-									"})",
-									"",
-									"pm.test(\"Response time is less than 800ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(800)",
 									"})"
 								],
 								"type": "text/javascript"
@@ -1346,9 +1315,9 @@
 									"pm.environment.set(\"variable_key\", \"variable_value\");",
 									"})",
 									"",
-									"pm.test(\"Response time is less than 500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(500)",
-									"})"
+									"pm.test(\"Verify error message\", function () { ",
+									"    pm.expect(pm.response.text()).to.include(\"Item not found\"); ",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1380,6 +1349,26 @@
 					},
 					"response": []
 				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
 			]
 		}
 	],
@@ -1408,7 +1397,9 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					""
+					"pm.test(\"Response time is less than 1500ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(1500)",
+					"})"
 				]
 			}
 		}
