@@ -1,25 +1,30 @@
 import { Selector, t } from 'testcafe'
+import { NUMBERS } from '../data/Constants'
 
 class tasksPage {
     constructor(){
+        //Comun elements to create taks
         this.addTaskButton = Selector('.plus_add_button')
         this.titleText = Selector('.public-DraftStyleDefault-block.public-DraftStyleDefault-ltr')
-        this.sumitTask =Selector('.reactist_button.reactist_button--primary')
+        this.taskListItem = Selector('.task_list_item__content__wrapper')
+        this.taskTitleListItem = Selector('.markdown_content.task_content')
+        this.sumitTask = Selector('.reactist_button.reactist_button--primary')
         this.todayTaskCreated = Selector('.markdown_content.task_content')
-        this.tomorrowTaskButton = Selector('.item_due_selector.icon_pill')
-        this.tomorrowCalendarButton = Selector('.scheduler-suggestions-item').withText('Tomorrow')
-        this.deleteTaskButton =Selector('.task_checkbox.priority_1')
-        this.taskCompleted =Selector('.text_holder').withText('1 task completed')
-        this.tomorrowTaskCreatedInbox =Selector('.date date_tom').withText('Tomorrow')
-        this.cancelCreateTask =Selector('.reactist_button.reactist_button--secondary')
+        this.cancelCreateTask = Selector('.reactist_button.reactist_button--secondary')
+        //Tomorrow test
+        this.tomorrowTaskButton =Selector('.item_due_selector.icon_pill')
+        this.tomorrowCalendarButton =Selector('.scheduler-suggestions-item').withText('Tomorrow')
+        this.tomorrowTaskCreatedInbox =Selector('.date.date_tom').withText('Tomorrow')
+        //Delete function
         this.moreMenuButton=Selector('button[data-testid="more_menu"]')
         this.deleteTaskButton=Selector('.menu_item.icon_menu_item.danger_menu')
         this.submitDeletButtonPopoUp=Selector('.ist_button.ist_button_red')
     }
     
     async deleteAllTasks(){
-        let totalTasks = await this.todayTaskCreated.count
-        if( totalTasks != 0){
+        const totalTasks = await this.todayTaskCreated.count
+        const taskNumber = 0
+        if ( totalTasks != taskNumber ){
             for (let i = 0; i < totalTasks; i++) {
                 await t
                 .hover(this.todayTaskCreated)
@@ -36,8 +41,15 @@ class tasksPage {
         }        
     }
 
+    async validateMultipleTasks(titleName, numberOfTasks){
+        for (let i = 0; i < numberOfTasks; i++) {
+            await t.expect(this.taskTitleListItem.nth(i).innerText).contains(titleName + i)
+        }
+        return true
+    }
+
     async countTasks(){
-        let countTasksCreated = this.todayTaskCreated.count
+        const countTasksCreated = await this.todayTaskCreated.count
         return countTasksCreated
     }
 
@@ -62,8 +74,7 @@ class tasksPage {
         .click(this.tomorrowCalendarButton)
         .typeText(this.titleText,titleName, {paste:true})
         .click(this.sumitTask)
-        .setNativeDialogHandler(() => true)
-        .click(this.sumitTask)
+        .click(this.cancelCreateTask)
     }
 }
 
