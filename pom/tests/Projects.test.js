@@ -8,15 +8,17 @@ fixture('Create projects test cases')
     .page `${URLS.HOME_URL}`
     .beforeEach(async t =>{
         await t.click(homePage.homePageLoginButton)
-        await t.click(loginPage.checkboxKeepLoggedin)
-        await loginPage.logingSuccess(CREDENTIALS.SUCCESS_USER.USERNAME,CREDENTIALS.SUCCESS_USER.PASSWORD)
+        await t.click(loginPage.keepLoggedInCheckbox)
+        await loginPage.loginSuccess(CREDENTIALS.SUCCESS_USER.USERNAME,CREDENTIALS.SUCCESS_USER.PASSWORD)
     })
     .afterEach(async t =>{
-       await t.wait(NUMBERS.TIME_TO_WAIT)
+        await projectsPage.deleteProject()
+        await t.wait(NUMBERS.TIME_TO_WAIT)
     })
 
-test.meta('suite','smoke')('User create correctly a new project', async t => {
-    await projectsPage.createProject(CREATE_PROJECT.NAME, CREATE_PROJECT.COLOR, CREATE_PROJECT.FAVORITE)
-    await t.hover(basePage.favoriteListItem.withText(CREATE_PROJECT.NAME))
+test.meta('suite','smoke')('User create correctly a new favorite project', async t => {
+    await t.click(basePage.addProjectButton)
+    await projectsPage.createFavoriteProject(CREATE_PROJECT.NAME, CREATE_PROJECT.COLOR, CREATE_PROJECT.FAVORITE)
+    await t.click(basePage.favoriteListItem.withText(CREATE_PROJECT.NAME))
     await t.expect(await projectsPage.validateProject(CREATE_PROJECT.NAME, CREATE_PROJECT.COLOR, CREATE_PROJECT.FAVORITE)).ok()
 })

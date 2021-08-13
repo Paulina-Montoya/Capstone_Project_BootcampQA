@@ -2,18 +2,14 @@ import { Selector, t } from 'testcafe'
 
 class basePage {
     constructor(){
+        //Upper menu
         this.avatarMenu = Selector('.user_avatar.big.settings_avatar')
-        this.burgerMenu = Selector('button[aria-label="Main.menu"]')
+        //Left menu main buttons
         this.menuTodayButton = Selector('.item_content').withText('Today')
         this.menuInboxButton = Selector('#filter_inbox')
-        this.searchBar = Selector('.quick_find__input')
         //Projects
+        this.addProjectButton = Selector('.adder_icon')
         this.favoriteListItem = Selector('.sidebar_expansion_panel.expansion_panel.expansion_panel--expanded').withText('Favorites').find('[data-type="project_list_item"]')
-    }
-
-    async openMenu(){
-    await t
-    .expect(this.burgerMenu.exists).ok()
     }
 }
 
