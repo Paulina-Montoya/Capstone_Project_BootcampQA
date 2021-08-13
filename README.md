@@ -1,6 +1,6 @@
 # Capstone Project - QA Bootcamp
 
-## Pre-conditions:
+## Pre-Conditions:
 
 - [Install Node.js](https://nodejs.org/en/download/current/)
 - [Install Git](https://git-scm.com/downloads)
@@ -8,22 +8,24 @@
 ## Project Structure
 
 ```
-├── .github                                 # Github Actions config file
-├── api_tests                               # Postman collection & environment files
+├── .github                                 # Github Actions config file.
+├── api_tests                               # Postman collection & environment files.
 ├── pom                                     # Main Page Object Model folder.
 │   ├── data                                # Data providers, Roles.
 │   ├── pages                               # All the pages, including the Common/Base page.
 │   ├── tests                               # Our test files are located here(only one fixture per file).
-└── report                                  # Visual report folders to save JSON & HTML files
-└── .env                                    # Follow the 4th step to create the file
-└── .eslintrc.js                            # Static test config file
-└── .testcaferc.json                        # TestCafe config file
+└── report                                  # Visual report folders to save JSON & HTML files.
+│   ├── HTMLReport
+│   ├── JSONreport
+└── .env                                    # Follow the 3th & 4th steps to create the file.
+└── .eslintrc.js                            # Static test config file.
+└── .testcaferc.json                        # TestCafe config file.
 └── package.json
-└── report-generator.js                     # Visual report config file
-└── testcafe-reporter-cucumber-json.json    # Json report config file
+└── report-generator.js                     # Visual report config file.
+└── testcafe-reporter-cucumber-json.json    # Json report config file.
 ```
 
-## Set up the project:
+## Set Up the Project:
 
 1. Clone the project:
 
@@ -45,7 +47,7 @@
 
    `PASSWORD_SUCCESS=validpassword`
 
-## Run the test cases scripts:
+## Run the Test Cases Scripts:
 
 5. Open the terminal and add the next commands to run the test scripts:
 
@@ -59,7 +61,7 @@
 
    `npm run test-suite-smoke` : run the smoke suite
 
-## Create a report:
+## Create a Report:
 
 6. First, run the next command to generate a JSON file with the data provided:
 
@@ -69,13 +71,13 @@
 
    `npm run test-open-report`
 
-## Review code:
+## Review Code:
 
 8. To analyzes the JavaScript code and quickly find problems, run the next command:
 
    `npm run test-text`
 
-## API testing:
+## API Testing:
 
 9. To run the API tests use the next command:
 
