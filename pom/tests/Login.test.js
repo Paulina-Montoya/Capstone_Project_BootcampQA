@@ -1,4 +1,4 @@
-import { URLS, CREDENTIALS } from '../data/Constants'
+import { URLS, CREDENTIALS, MESSAGES, NUMBERS } from '../data/Constants'
 import homePage from '../pages/HomePage'
 import basePage from '../pages/BasePage'
 import loginPage from '../pages/LogInPage'
@@ -8,7 +8,10 @@ fixture('Login form test cases')
     .page `${URLS.HOME_URL}`
     .beforeEach(async t =>{
         await t.click(homePage.homePageLoginButton)
-        await t.click(loginPage.checkboxKeepLoggedin)
+        await t.click(loginPage.keepLoggedInCheckbox)
+    })
+    .afterEach(async t =>{
+        await t.wait(NUMBERS.TIME_TO_WAIT)
     })
 
 test.meta('suite','smoke')('User login successfully with an standar role', async t => {
@@ -17,16 +20,16 @@ test.meta('suite','smoke')('User login successfully with an standar role', async
     })
 
 test('User login unsuccess because of wrong email', async t => {
-    await loginPage.logingSuccess(null,null)
-    await t.expect(loginPage.messageInvalidAddress.exists).ok()
+    await loginPage.loginSuccess(null,null)
+    await t.expect(loginPage.errorMessage.innerText).eql(MESSAGES.LOGIN.INVALIDEMAIL)
     })
 
 test.meta('suite','smoke')('User login unsuccess because of wrong password', async t => {
-    await loginPage.logingSuccess(CREDENTIALS.SUCCESS_USER.USERNAME,CREDENTIALS.INVALID_USER.PASSWORD)   
-    await t.expect(loginPage.messageInvalidEmail.exists).ok()
+    await loginPage.loginSuccess(CREDENTIALS.SUCCESS_USER.USERNAME,CREDENTIALS.INVALID_USER.PASSWORD)   
+    await t.expect(loginPage.errorMessage.innerText).eql(MESSAGES.LOGIN.INVALIDPASSWORD)
     })
 
 test('User login unsuccess because of blank password input', async t => {
-    await loginPage.logingSuccess(CREDENTIALS.SUCCESS_USER.USERNAME,null)
-    await t.expect(loginPage.messageBlankPassword.exists).ok() 
+    await loginPage.loginSuccess(CREDENTIALS.SUCCESS_USER.USERNAME,null)
+    await t.expect(loginPage.errorMessage.innerText).eql(MESSAGES.LOGIN.BLANKPASSWORD)
     })
