@@ -18,7 +18,7 @@
 │   ├── HTMLReport
 │   ├── JSONreport
 └── .env                                    # Follow the 3th & 4th steps to create the file.
-└── .eslintrc.js                            # Static test config file.
+└── .eslintrc.json                          # Static test config file.
 └── .testcaferc.json                        # TestCafe config file.
 └── package.json
 └── report-generator.js                     # Visual report config file.

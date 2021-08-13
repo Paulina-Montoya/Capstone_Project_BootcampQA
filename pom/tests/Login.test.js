@@ -1,7 +1,7 @@
 import { URLS, CREDENTIALS, MESSAGES, NUMBERS } from '../data/Constants'
 import homePage from '../pages/HomePage'
-import basePage from '../pages/BasePage'
 import loginPage from '../pages/LogInPage'
+import todayPage from '../pages/TodayPage'
 import { STANDARD_USER_ROLE } from '../data/Roles'
 
 fixture('Login form test cases')
@@ -16,12 +16,12 @@ fixture('Login form test cases')
 
 test.meta('suite','smoke')('User login successfully with an standar role', async t => {
     await t.useRole(STANDARD_USER_ROLE)
-    await t.expect(basePage.avatarMenu.exists).ok()
+    await t.expect(todayPage.todayTitle.exists).ok()
     })
 
 test('User login unsuccess because of wrong email', async t => {
     await loginPage.loginSuccess(null,null)
-    await t.expect(loginPage.errorMessage.innerText).eql(MESSAGES.LOGIN.INVALIDEMAIL)
+    await t.expect(loginPage.errorMessage.innerText).contains(MESSAGES.LOGIN.INVALIDEMAIL)
     })
 
 test.meta('suite','smoke')('User login unsuccess because of wrong password', async t => {
